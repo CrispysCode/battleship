@@ -1,3 +1,4 @@
+const Ship = require("./shipClass");
 describe('Ship tests', () => {
   it('when calling hit() ship.hit should be +1', () => {
     const ship = new Ship(5);
@@ -7,7 +8,7 @@ describe('Ship tests', () => {
 
   it('isSunk() should return true if ship has been hit its length amount', () => {
     const ship = new Ship(5);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < ship.length; i++) {
       ship.hit();
     }
     expect(ship.isSunk()).toBe(true);
