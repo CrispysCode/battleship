@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "format": "prettier --write ."
   },
   "author": "CrispysCode <pr0ject0dinx@gmail.com>",
   "license": "ISC",
