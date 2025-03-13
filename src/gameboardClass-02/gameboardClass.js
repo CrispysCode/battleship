@@ -1,4 +1,3 @@
-
 class Gameboard {
   constructor() {
     this.board = Array(15)
@@ -31,6 +30,18 @@ class Gameboard {
       }
     }
     this.ships.push(ship);
+  }
+
+  receiveAttack(x, y) {
+    if (this.board[x][y] !== null) {
+      this.board[x][y].hit();
+    } else {
+      this.missedAttacks.push([x, y]);
+    }
+  }
+
+  allShipsSunk() {
+    return this.ships.every((ship) => ship.isSunk());
   }
 }
 

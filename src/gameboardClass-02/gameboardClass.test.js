@@ -1,5 +1,5 @@
 const Gameboard = require("./gameboardClass");
-const Ship = require("../shipClass-01/shipClass")
+const Ship = require("../shipClass-01/shipClass");
 describe("Gameboard", () => {
   it("should be able to place ships at specific coordinates", () => {
     const gameboard = new Gameboard();
