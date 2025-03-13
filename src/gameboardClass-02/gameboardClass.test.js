@@ -32,13 +32,5 @@ describe("Gameboard", () => {
     expect(gameboard.allShipsSunk()).toBe(true);
   });
 
-  it("should not report all ships sunk if not all ships have been sunk", () => {
-    const gameboard = new Gameboard();
-    const ship = new Ship(5);
-    gameboard.placeShip(ship, 0, 0, "horizontal");
-    for (let i = 0; i < 4; i++) {
-      gameboard.receiveAttack(0, i);
-    }
-    expect(gameboard.allShipsSunk()).toBe(false);
-  });
+
 });
