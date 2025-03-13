@@ -1,11 +1,11 @@
 const Gameboard = require("./gameboardClass");
-
+const Ship = require("../shipClass-01/shipClass")
 describe("Gameboard", () => {
   it("should be able to place ships at specific coordinates", () => {
     const gameboard = new Gameboard();
     const ship = new Ship(5);
     gameboard.placeShip(ship, 0, 0, "horizontal");
-    expect(gameboard.getShipAt(0, 0)).toBe(ship);
+    expect(gameboard.board[0][0]).toBe(ship);
   });
 
   it("should be able to receive an attack at specific coordinates", () => {
@@ -19,7 +19,7 @@ describe("Gameboard", () => {
   it("should record missed attacks", () => {
     const gameboard = new Gameboard();
     gameboard.receiveAttack(0, 0);
-    expect(gameboard.getMissedAttacks()).toContainEqual([0, 0]);
+    expect(gameboard.missedAttacks).toContainEqual([0, 0]);
   });
 
   it("should report whether or not all ships have been sunk", () => {

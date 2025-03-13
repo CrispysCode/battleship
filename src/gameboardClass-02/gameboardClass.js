@@ -1,4 +1,4 @@
-const Ship = require("/");
+
 class Gameboard {
   constructor() {
     this.board = Array(15)
@@ -20,7 +20,7 @@ class Gameboard {
         this.board[x][y + i] = ship;
       }
     } else {
-      for (let i = 0; i < ship.lenght; i++) {
+      for (let i = 0; i < ship.length; i++) {
         if (x + 1 < 0 || x + i >= 15 || y < 0 || y + i >= 15) {
           throw new Error("Ship placement invalid");
         }
