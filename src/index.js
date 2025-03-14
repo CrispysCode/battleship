@@ -15,28 +15,24 @@ const startBtn = document.querySelector(".startBtn");
 const userBoard = document.querySelector(".userBoard");
 const computerBoard = document.querySelector(".computerBoard");
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
- for (let i = 0; i < 100; i++) {
-  const userCell = document.createElement("div");
-  const computerCell = document.createElement("div");
-  userCell.classList.add("cell");
-  userCell.dataset.x = Math.floor(i / 10);
-  userCell.dataset.y = i % 10;
-  userBoard.appendChild(userCell);
-  computerCell.classList.add("cell");
-  computerCell.dataset.x = Math.floor(i / 10);
-  computerCell.dataset.y = i % 10;
-  computerBoard.appendChild(computerCell);
- }
-
-})
+  for (let i = 0; i < 100; i++) {
+    const userCell = document.createElement("div");
+    const computerCell = document.createElement("div");
+    userCell.classList.add("cell");
+    userCell.dataset.x = Math.floor(i / 10);
+    userCell.dataset.y = i % 10;
+    userBoard.appendChild(userCell);
+    computerCell.classList.add("cell");
+    computerCell.dataset.x = Math.floor(i / 10);
+    computerCell.dataset.y = i % 10;
+    computerBoard.appendChild(computerCell);
+  }
+});
 startBtn.addEventListener("click", () => {
- const gameSetup = new GameSetup();
- gameSetup.startGame();
+  const gameSetup = new GameSetup();
+  gameSetup.startGame();
 
- const gameFlow = new GameFlow(gameSetup);
- gameFlow.renderBoards();
-
-})
+  const gameFlow = new GameFlow(gameSetup);
+  gameFlow.renderBoards();
+});

@@ -9,7 +9,6 @@ class Gameboard {
   }
 
   placeShip(ship, x, y, pos) {
-    
     if (pos === "horizontal") {
       for (let i = 0; i < ship.length; i++) {
         if (x < 0 || x >= 10 || y + i < 0 || y + i >= 10) {

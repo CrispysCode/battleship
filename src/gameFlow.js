@@ -2,30 +2,31 @@ const GameSetup = require("./gameSetup-04/gameSetup");
 const RenderGame = require("./renderModule");
 const Gameboard = require("./gameboardClass-02/gameboardClass");
 
-
-
 class GameFlow {
   constructor(gameSetup) {
     this.gameSetup = gameSetup;
-    this.computerBoard = document.querySelector('.computerBoard');
-    this.userBoard = document.querySelector('.userBoard');
-    this.currentPlayer = 'user';
-    
+    this.computerBoard = document.querySelector(".computerBoard");
+    this.userBoard = document.querySelector(".userBoard");
+    this.currentPlayer = "user";
+
     this.setupAttackListeners();
   }
 
   setupAttackListeners() {
-    this.computerBoard.addEventListener('click', this.handleUserAttack.bind(this));
+    this.computerBoard.addEventListener(
+      "click",
+      this.handleUserAttack.bind(this),
+    );
   }
 
   handleUserAttack(event) {
-    if (this.currentPlayer !== 'user') return;
+    if (this.currentPlayer !== "user") return;
 
     const x = parseInt(event.target.dataset.x);
     const y = parseInt(event.target.dataset.y);
 
     if (isNaN(x) || isNaN(y)) {
-      alert("Choose a different spot!")
+      alert("Choose a different spot!");
       return;
     }
 
@@ -33,11 +34,11 @@ class GameFlow {
     this.renderBoards();
 
     if (this.gameSetup.computerGameboard.allShipsSunk()) {
-      console.log('User wins!');
+      console.log("User wins!");
       return;
     }
 
-    this.currentPlayer = 'computer';
+    this.currentPlayer = "computer";
     this.computerTurn();
   }
 
@@ -52,17 +53,19 @@ class GameFlow {
     this.renderBoards();
 
     if (this.gameSetup.userGameboard.allShipsSunk()) {
-      console.log('Computer wins!');
+      console.log("Computer wins!");
       return;
     }
 
-    this.currentPlayer = 'user';
+    this.currentPlayer = "user";
   }
 
   isIllegalMove(x, y) {
-    return this.gameSetup.userGameboard.missedAttacks.some(
-      attack => attack[0] === x && attack[1] === y
-    ) || this.gameSetup.userGameboard.hitLocations.has(`${x},${y}`);
+    return (
+      this.gameSetup.userGameboard.missedAttacks.some(
+        (attack) => attack[0] === x && attack[1] === y,
+      ) || this.gameSetup.userGameboard.hitLocations.has(`${x},${y}`)
+    );
   }
 
   renderBoards() {
@@ -83,7 +86,9 @@ class GameFlow {
         boardCell.dataset.x = x;
         boardCell.dataset.y = y;
 
-        if (missedAttacks.some(attack => attack[0] === x && attack[1] === y)) {
+        if (
+          missedAttacks.some((attack) => attack[0] === x && attack[1] === y)
+        ) {
           boardCell.classList.add("attacked");
         }
 
@@ -113,7 +118,9 @@ class GameFlow {
         boardCell.dataset.x = x;
         boardCell.dataset.y = y;
 
-        if (missedAttacks.some(attack => attack[0] === x && attack[1] === y)) {
+        if (
+          missedAttacks.some((attack) => attack[0] === x && attack[1] === y)
+        ) {
           boardCell.classList.add("attacked");
         }
         if (cell !== null) {
