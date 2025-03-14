@@ -5,12 +5,12 @@ class RenderGame {
     this.gameSetup = gameSetup;
     this.userGameboard = gameSetup.userGameboard;
     this.computerGameboard = gameSetup.computerGameboard;
-    this.userBoard = document.querySelector(".user-board");
-    this.computerBoard = document.querySelector(".computer-board");
+    this.userBoard = document.querySelector(".userBoard");
+    this.computerBoard = document.querySelector(".computerBoard");
   }
 
   renderUserBoard() {
-    this.userBoard.textContent = "";
+    this.userBoard.innerHTML = "";
     const board = this.userGameboard.board;
 
     board.forEach((row, x) => {
@@ -30,7 +30,7 @@ class RenderGame {
   }
 
   renderComputerBoard() {
-    this.computerBoard.textContent = "";
+    this.computerBoard.innerHTML = "";
     const board = this.computerGameboard.board;
 
     board.forEach((row, x) => {
@@ -55,3 +55,4 @@ class RenderGame {
     this.renderComputerBoard();
   }
 }
+module.exports = RenderGame;

@@ -24,7 +24,15 @@ class GameSetup {
       { length: 2, x: 9, y: 0, position: "horizontal" },
     ];
 
-    ships.forEach((shipSpot) => {
+     ships.forEach((shipSpot, index) => {
+    console.log(`Attempting to place ship ${index + 1}:`, {
+      length: shipSpot.length,
+      x: shipSpot.x,
+      y: shipSpot.y,
+      position: shipSpot.position
+    });
+
+    try {
       const ship = new Ship(shipSpot.length);
       this.userGameboard.placeShip(
         ship,
@@ -32,6 +40,10 @@ class GameSetup {
         shipSpot.y,
         shipSpot.position,
       );
+    } catch (error) {
+      console.error(`Error placing ship ${index + 1}:`, error);
+      throw error;
+    }
     });
   }
 
@@ -40,18 +52,30 @@ class GameSetup {
       { length: 5, x: 1, y: 1, position: "horizontal" },
       { length: 4, x: 3, y: 3, position: "horizontal" },
       { length: 3, x: 6, y: 6, position: "horizontal" },
-      { length: 3, x: 8, y: 8, position: "horizontal" },
-      { length: 2, x: 0, y: 9, position: "horizontal" },
+      { length: 3, x: 8, y: 7, position: "horizontal" },
+      { length: 2, x: 0, y: 8, position: "horizontal" },
     ];
 
-    ships.forEach((shipSpot) => {
-      const ship = new Ship(shipSpot.length);
-      this.computerGameboard.placeShip(
-        ship,
-        shipSpot.x,
-        shipSpot.y,
-        shipSpot.position,
-      );
+    ships.forEach((shipSpot, index) => {
+      console.log(`Attempting to place ship ${index + 1}:`, {
+        length: shipSpot.length,
+        x: shipSpot.x,
+        y: shipSpot.y,
+        position: shipSpot.position
+      });
+  
+      try {
+        const ship = new Ship(shipSpot.length);
+        this.computerGameboard.placeShip(
+          ship,
+          shipSpot.x,
+          shipSpot.y,
+          shipSpot.position,
+        );
+      } catch (error) {
+        console.error(`Error placing ship ${index + 1}:`, error);
+        throw error;
+      }
     });
   }
 
