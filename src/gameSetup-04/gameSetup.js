@@ -4,7 +4,13 @@ const {
   Computer,
   createPlayer,
 } = require("../playerClass-03/playerClass");
-const Ship = require("../shipClass-01/shipClass");
+const {
+  Carrier,
+  Battleship,
+  Cruiser,
+  Submarine,
+  Destroyer,
+} = require("../shipClass-01/shipClass.js");
 
 class GameSetup {
   constructor() {
@@ -26,16 +32,16 @@ class GameSetup {
 
     ships.forEach((shipSpot, index) => {
       console.log(`Attempting to place ship ${index + 1}:`, {
-        length: shipSpot.length,
+        ship: shipSpot.ship.constructor.name,
         x: shipSpot.x,
         y: shipSpot.y,
         position: shipSpot.position,
       });
 
       try {
-        const ship = new Ship(shipSpot.length);
+  
         this.userGameboard.placeShip(
-          ship,
+          shipSpot.ship,
           shipSpot.x,
           shipSpot.y,
           shipSpot.position,
@@ -49,25 +55,24 @@ class GameSetup {
 
   placeComputerShips() {
     const ships = [
-      { length: 5, x: 1, y: 1, position: "horizontal" },
-      { length: 4, x: 3, y: 3, position: "horizontal" },
-      { length: 3, x: 6, y: 6, position: "horizontal" },
-      { length: 3, x: 8, y: 7, position: "horizontal" },
-      { length: 2, x: 0, y: 8, position: "horizontal" },
+      { ship: new Carrier(), x: 1, y: 1, position: "vertical" },
+      { ship: new Battleship(), x: 3, y: 3, position: "vertical" },
+      { ship: new Cruiser(), x: 6, y: 6, position: "horizontal" },
+      { ship: new Submarine(), x: 8, y: 7, position: "vertical" },
+      { ship: new Destroyer(), x: 0, y: 8, position: "horizontal" },
     ];
 
     ships.forEach((shipSpot, index) => {
       console.log(`Attempting to place ship ${index + 1}:`, {
-        length: shipSpot.length,
+        ship: shipSpot.ship.constructor.name,
         x: shipSpot.x,
         y: shipSpot.y,
         position: shipSpot.position,
       });
 
       try {
-        const ship = new Ship(shipSpot.length);
         this.computerGameboard.placeShip(
-          ship,
+          shipSpot.ship,
           shipSpot.x,
           shipSpot.y,
           shipSpot.position,
