@@ -10,3 +10,24 @@ header > h1 {
   text-align: center;
   font-size: 2rem;
 }
+
+.game-container {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 25px);
+  grid-template-rows: repeat(10, 25px);
+  border: 2px solid red;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.ship {
+  background-color: red;
+}
