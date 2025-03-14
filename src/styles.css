@@ -21,11 +21,12 @@ header > h1 {
   display: grid;
   grid-template-columns: repeat(10, 25px);
   grid-template-rows: repeat(10, 25px);
-  border: 2px solid red;
+  gap: .5px;
 }
 
 .cell {
   border: 1px solid black;
+  cursor: pointer;
 }
 
 .ship {

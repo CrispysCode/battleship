@@ -7,6 +7,7 @@ const {
 } = require("./playerClass-03/playerClass.js");
 const GameSetup = require("./gameSetup-04/gameSetup.js");
 const RenderGame = require("./renderModule.js");
+const GameFlow = require("./gameFlow.js");
 import "./styles.css";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const gameSetup = new GameSetup();
   gameSetup.startGame();
 
-  const renderGame = new RenderGame(gameSetup);
-  renderGame.renderBoards();
+  const gameFlow = new GameFlow(gameSetup);
+  gameFlow.renderBoards();
+ 
  })
 })
