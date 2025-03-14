@@ -1,5 +1,9 @@
 const Gameboard = require("../gameboardClass-02/gameboardClass");
-const { User, Computer, createPlayer } = require("../playerClass-03/playerClass");
+const {
+  User,
+  Computer,
+  createPlayer,
+} = require("../playerClass-03/playerClass");
 const Ship = require("../shipClass-01/shipClass");
 
 class GameSetup {
@@ -20,11 +24,15 @@ class GameSetup {
       { length: 2, x: 9, y: 0, position: "horizontal" },
     ];
 
-    ships.forEach(shipSpot => {
+    ships.forEach((shipSpot) => {
       const ship = new Ship(shipSpot.length);
-      this.userGameboard.placeShip(ship, shipSpot.x, shipSpot.y, shipSpot.position);
+      this.userGameboard.placeShip(
+        ship,
+        shipSpot.x,
+        shipSpot.y,
+        shipSpot.position,
+      );
     });
-
   }
 
   placeComputerShips() {
@@ -34,12 +42,16 @@ class GameSetup {
       { length: 3, x: 6, y: 6, position: "horizontal" },
       { length: 3, x: 8, y: 8, position: "horizontal" },
       { length: 2, x: 0, y: 9, position: "horizontal" },
-
     ];
 
-    ships.forEach(shipSpot => {
+    ships.forEach((shipSpot) => {
       const ship = new Ship(shipSpot.length);
-      this.computerGameboard.placeShip(ship, shipSpot.x, shipSpot.y, shipSpot.position);
+      this.computerGameboard.placeShip(
+        ship,
+        shipSpot.x,
+        shipSpot.y,
+        shipSpot.position,
+      );
     });
   }
 
