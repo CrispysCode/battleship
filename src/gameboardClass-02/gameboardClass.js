@@ -1,8 +1,8 @@
 class Gameboard {
   constructor() {
-    this.board = Array(15)
+    this.board = Array(10)
       .fill(null)
-      .map(() => Array(15).fill(null));
+      .map(() => Array(10).fill(null));
     this.missedAttacks = [];
     this.ships = [];
   }
@@ -10,7 +10,7 @@ class Gameboard {
   placeShip(ship, x, y, pos) {
     if (pos === "horizontal") {
       for (let i = 0; i < ship.length; i++) {
-        if (x < 0 || x >= 15 || y + i < 0 || y + i >= 15) {
+        if (x < 0 || x >= 10 || y + i < 0 || y + i >= 10) {
           throw new Error("Ship placement invalid");
         }
         if (this.board[x][y + i] !== null) {
@@ -20,7 +20,7 @@ class Gameboard {
       }
     } else {
       for (let i = 0; i < ship.length; i++) {
-        if (x + 1 < 0 || x + i >= 15 || y < 0 || y + i >= 15) {
+        if (x + 1 < 0 || x + i >= 10 || y < 0 || y + i >= 10) {
           throw new Error("Ship placement invalid");
         }
         if (this.board[x + i][y] !== null) {

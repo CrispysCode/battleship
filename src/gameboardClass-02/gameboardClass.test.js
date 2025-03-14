@@ -31,6 +31,13 @@ describe("Gameboard", () => {
     }
     expect(gameboard.allShipsSunk()).toBe(true);
   });
-
-
+  it("should prevent placing ships in overlapping positions", () => {
+    const gameboard = new Gameboard();
+    const ship1 = new Ship(3);
+    const ship2 = new Ship(3);
+    gameboard.placeShip(ship1, 0, 0, "horizontal");
+    expect(() => {
+      gameboard.placeShip(ship2, 0, 0, "horizontal");
+    }).toThrow("Ship has already taken this position");
+  });
 });

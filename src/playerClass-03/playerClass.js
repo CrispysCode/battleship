@@ -17,6 +17,6 @@ function createPlayer(type, gameboard) {
     return new User(gameboard);
   } else if (type === "computer") {
     return new Computer(gameboard);
-  } 
+  }
 }
 module.exports = { User, Computer, createPlayer };
