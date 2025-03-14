@@ -29,7 +29,7 @@ header > h1 {
   cursor: pointer;
 }
 
-.ship {
+.userShip {
   background-color: red;
 }
 
@@ -38,6 +38,7 @@ header > h1 {
   pointer-events: none;
 }
 
-.cell.ship.hit {
-  background-color: black;
+.cell.computerShip.hit {
+  background-color: red;
+  pointer-events: none;
 }

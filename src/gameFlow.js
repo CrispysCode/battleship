@@ -24,6 +24,11 @@ class GameFlow {
     const x = parseInt(event.target.dataset.x);
     const y = parseInt(event.target.dataset.y);
 
+    if (isNaN(x) || isNaN(y)) {
+      alert("Choose a different spot!")
+      return;
+    }
+
     this.gameSetup.computerGameboard.receiveAttack(x, y);
     this.renderBoards();
 
@@ -83,7 +88,7 @@ class GameFlow {
         }
 
         if (cell !== null) {
-          boardCell.classList.add("ship");
+          boardCell.classList.add("userShip");
           boardCell.dataset.shipLength = cell.length;
 
           if (hitLocations.has(`${x},${y}`)) {
@@ -112,7 +117,7 @@ class GameFlow {
           boardCell.classList.add("attacked");
         }
         if (cell !== null) {
-          boardCell.classList.add("ship");
+          boardCell.classList.add("computerShip");
           boardCell.dataset.shipLength = cell.length;
 
           if (hitLocations.has(`${x},${y}`)) {
