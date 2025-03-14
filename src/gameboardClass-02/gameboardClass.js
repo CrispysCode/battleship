@@ -5,6 +5,7 @@ class Gameboard {
       .map(() => Array(10).fill(null));
     this.missedAttacks = [];
     this.ships = [];
+    this.hitLocations = new Set();
   }
 
   placeShip(ship, x, y, pos) {
@@ -36,6 +37,7 @@ class Gameboard {
   receiveAttack(x, y) {
     if (this.board[x][y] !== null) {
       this.board[x][y].hit();
+      this.hitLocations.add(`${x},${y}`);
     } else {
       this.missedAttacks.push([x, y]);
     }

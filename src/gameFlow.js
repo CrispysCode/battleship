@@ -57,7 +57,7 @@ class GameFlow {
   isIllegalMove(x, y) {
     return this.gameSetup.userGameboard.missedAttacks.some(
       attack => attack[0] === x && attack[1] === y
-    );
+    ) || this.gameSetup.userGameboard.hitLocations.has(`${x},${y}`);
   }
 
   renderBoards() {
@@ -68,6 +68,8 @@ class GameFlow {
   renderUserBoard() {
     this.userBoard.innerHTML = "";
     const board = this.gameSetup.userGameboard.board;
+    const missedAttacks = this.gameSetup.userGameboard.missedAttacks;
+    const hitLocations = this.gameSetup.userGameboard.hitLocations;
 
     board.forEach((row, x) => {
       row.forEach((cell, y) => {
@@ -76,9 +78,17 @@ class GameFlow {
         boardCell.dataset.x = x;
         boardCell.dataset.y = y;
 
+        if (missedAttacks.some(attack => attack[0] === x && attack[1] === y)) {
+          boardCell.classList.add("attacked");
+        }
+
         if (cell !== null) {
           boardCell.classList.add("ship");
           boardCell.dataset.shipLength = cell.length;
+
+          if (hitLocations.has(`${x},${y}`)) {
+            boardCell.classList.add("hit");
+          }
         }
         this.userBoard.appendChild(boardCell);
       });
@@ -88,6 +98,8 @@ class GameFlow {
   renderComputerBoard() {
     this.computerBoard.innerHTML = "";
     const board = this.gameSetup.computerGameboard.board;
+    const missedAttacks = this.gameSetup.computerGameboard.missedAttacks;
+    const hitLocations = this.gameSetup.computerGameboard.hitLocations;
 
     board.forEach((row, x) => {
       row.forEach((cell, y) => {
@@ -96,10 +108,16 @@ class GameFlow {
         boardCell.dataset.x = x;
         boardCell.dataset.y = y;
 
+        if (missedAttacks.some(attack => attack[0] === x && attack[1] === y)) {
+          boardCell.classList.add("attacked");
+        }
         if (cell !== null) {
           boardCell.classList.add("ship");
-          boardCell.dataset.x = x;
-          boardCell.dataset.y = y;
+          boardCell.dataset.shipLength = cell.length;
+
+          if (hitLocations.has(`${x},${y}`)) {
+            boardCell.classList.add("hit");
+          }
         }
 
         this.computerBoard.appendChild(boardCell);

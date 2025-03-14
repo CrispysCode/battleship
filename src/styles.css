@@ -32,3 +32,12 @@ header > h1 {
 .ship {
   background-color: red;
 }
+
+.cell.attacked {
+  background-color: black;
+  pointer-events: none;
+}
+
+.cell.ship.hit {
+  background-color: black;
+}
