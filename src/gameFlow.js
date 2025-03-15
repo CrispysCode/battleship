@@ -1,5 +1,5 @@
 const GameSetup = require("./gameSetup-04/gameSetup");
-const RenderGame = require("./renderModule");
+const RenderGame = require("./shipPlacement");
 const Gameboard = require("./gameboardClass-02/gameboardClass");
 
 class GameFlow {

@@ -17,6 +17,9 @@ class Gameboard {
         if (this.board[x][y + i] !== null) {
           throw new Error("Ship has already taken this position");
         }
+        
+      }
+      for (let i = 0; i < ship.length; i++) {
         this.board[x][y + i] = ship;
       }
     } else {
@@ -27,6 +30,8 @@ class Gameboard {
         if (this.board[x + i][y] !== null) {
           throw new Error("Ship has already taken this position");
         }
+      }
+      for (let i = 0; i < ship.length; i++) {
         this.board[x + i][y] = ship;
       }
     }
