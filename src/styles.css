@@ -58,9 +58,7 @@ header > h1 {
 
 footer {
   /* display: flex; */
- text-align: center;
- 
- 
+  text-align: center;
 }
 
 .textarea {

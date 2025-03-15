@@ -10,17 +10,18 @@ let gameSetup;
 let currentShip = null;
 let orientation = "horizontal";
 const renderText = document.querySelector(".renderText");
+const shipContainer = document.querySelector(".ships-container");
+const userBoard = document.querySelector(".userBoard");
 
 const shipPlacement = (setup) => {
   gameSetup = setup;
-  const shipContainer = document.querySelector(".ships-container");
-  const userBoard = document.querySelector(".userBoard");
 
   shipContainer.querySelectorAll(".ship").forEach((ship) => {
     ship.addEventListener("dragstart", (e) => {
       currentShip = {
         length: parseInt(e.target.dataset.length),
-        name: e.target.dataset.name
+        name: e.target.dataset.name,
+        orientation: orientation,
       };
     });
 
@@ -37,7 +38,14 @@ const shipPlacement = (setup) => {
     const x = parseInt(e.target.dataset.x);
     const y = parseInt(e.target.dataset.y);
 
-    updatePreview(x, y, currentShip.length);
+    renderShipOnBoard(
+      x,
+      y,
+      currentShip.length,
+      currentShip.orientation,
+      "",
+      true,
+    );
   });
 
   userBoard.addEventListener("drop", (e) => {
@@ -56,29 +64,26 @@ const shipPlacement = (setup) => {
 
   // Orientation toggle
   document.addEventListener("keydown", (e) => {
-    if (e.key === "r" || e.key === "R") {
+    if (e.key === "r") {
       orientation = orientation === "horizontal" ? "vertical" : "horizontal";
       renderText.innerHTML = `${orientation}`;
-     
-      const previewCell = document.querySelector('.userBoard .ship-preview');
-     
-      if (previewCell) {
-        const x = parseInt(previewCell.dataset.x);
-        const y = parseInt(previewCell.dataset.y);
-        updatePreview(x, y, currentShip.length);
+
+      if (currentShip) {
+        currentShip.orientation = orientation;
+        const previewCell = document.querySelector(".userBoard .ship-preview");
+        if (previewCell) {
+          const x = parseInt(previewCell.dataset.x);
+          const y = parseInt(previewCell.dataset.y);
+          renderShipOnBoard(x, y, currentShip.length, orientation, "", true);
+        }
       }
     }
   });
 };
 
-function updatePreview(x, y, length) {
-  clearPreview();
-  renderShipOnBoard(x, y, length, orientation, '', true);
-}
-
 function clearPreview() {
-  document.querySelectorAll('.ship-preview').forEach(el => {
-    el.classList.remove('ship-preview');
+  document.querySelectorAll(".ship-preview").forEach((el) => {
+    el.classList.remove("ship-preview");
   });
 }
 
@@ -94,34 +99,40 @@ function placeShip(x, y, shipData) {
   const ShipClass = shipMap[shipData.name];
   const ship = new ShipClass();
 
-  gameSetup.userGameboard.placeShip(ship, x, y, orientation);
+  gameSetup.userGameboard.placeShip(ship, x, y, shipData.orientation);
 
   // Remove ship from container
-  const shipElement = document.querySelector(
-    `[data-name="${shipData.name}"]`
-  );
+  const shipElement = document.querySelector(`[data-name="${shipData.name}"]`);
   shipElement.remove();
 
   // Render ship
-  renderShipOnBoard(x, y, ship.length, orientation, shipData.name);
-  
+  renderShipOnBoard(x, y, ship.length, shipData.orientation, shipData.name);
+
   // Clear current ship and preview
   currentShip = null;
   clearPreview();
 }
 
-function renderShipOnBoard(x, y, length, orientation, shipName, isPreview = false) {
+function renderShipOnBoard(
+  x,
+  y,
+  length,
+  orientation,
+  shipName,
+  isPreview = false,
+) {
+  clearPreview();
   for (let i = 0; i < length; i++) {
     const cellX = orientation === "horizontal" ? x : x + i;
     const cellY = orientation === "horizontal" ? y + i : y;
 
     const cell = document.querySelector(
-      `.userBoard .cell[data-x="${cellX}"][data-y="${cellY}"]`
+      `.userBoard .cell[data-x="${cellX}"][data-y="${cellY}"]`,
     );
 
     if (cell) {
       if (isPreview) {
-        cell.classList.add('ship-preview');
+        cell.classList.add("ship-preview");
       } else {
         cell.classList.add("userShip");
         cell.classList.add(`${shipName.toLowerCase()}-ship`);
