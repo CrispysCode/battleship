@@ -47,3 +47,33 @@ header > h1 {
   background-color: rgba(0, 255, 0, 0.3);
   border: 1px solid black;
 }
+
+.output {
+  border: 0.5px solid black;
+  min-width: 200px;
+}
+.boardname {
+  text-align: center;
+}
+
+footer {
+  /* display: flex; */
+ text-align: center;
+ 
+ 
+}
+
+.textarea {
+  border: 1px solid black;
+  min-height: 50%;
+  margin-top: 25px;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+}
+
+.startBtn {
+  margin-left: 26%;
+  padding: 5px;
+}

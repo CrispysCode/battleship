@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battleship</title>
     <style>
-      .output {
-        border: 0.5px solid black;
-        min-width: 200px;
-      }
-      .boardname {
-        text-align: center;
-      }
+     
     </style>
   </head>
   <body>
@@ -67,12 +61,20 @@
             Destroyer (2)
           </div>
         </div>
+        <div class="textarea">
+          <p><strong>Ship Orientation:</strong></p>
+          
+          <p class="renderText"></p>
+        </div>
+        <button class="startBtn">Start Game</button>
       </div>
       <div class="boardname">
         <h2>Opponent's Board</h2>
         <div class="computerBoard board"></div>
       </div>
     </div>
-    <button class="startBtn">Start Game</button>
+    <footer>
+      <p>Make sure to place your ships!</p>
+    </footer>
   </body>
 </html>

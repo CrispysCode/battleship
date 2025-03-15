@@ -9,6 +9,7 @@ const {
 let gameSetup;
 let currentShip = null;
 let orientation = "horizontal";
+const renderText = document.querySelector(".renderText");
 
 const shipPlacement = (setup) => {
   gameSetup = setup;
@@ -54,18 +55,17 @@ const shipPlacement = (setup) => {
   });
 
   // Orientation toggle
-  document.addEventListener("keypress", (e) => {
+  document.addEventListener("keydown", (e) => {
     if (e.key === "r" || e.key === "R") {
       orientation = orientation === "horizontal" ? "vertical" : "horizontal";
-      
-      // Update preview if ship is being dragged
-      if (currentShip) {
-        const hoveredCell = document.querySelector('.ship-preview');
-        if (hoveredCell) {
-          const x = parseInt(hoveredCell.dataset.x);
-          const y = parseInt(hoveredCell.dataset.y);
-          updatePreview(x, y, currentShip.length);
-        }
+      renderText.innerHTML = `${orientation}`;
+     
+      const previewCell = document.querySelector('.userBoard .ship-preview');
+     
+      if (previewCell) {
+        const x = parseInt(previewCell.dataset.x);
+        const y = parseInt(previewCell.dataset.y);
+        updatePreview(x, y, currentShip.length);
       }
     }
   });
@@ -73,19 +73,7 @@ const shipPlacement = (setup) => {
 
 function updatePreview(x, y, length) {
   clearPreview();
-
-  for (let i = 0; i < length; i++) {
-    const cellX = orientation === 'horizontal' ? x : x + i;
-    const cellY = orientation === 'horizontal' ? y + i : y;
-
-    const cell = document.querySelector(
-      `.userBoard .cell[data-x="${cellX}"][data-y="${cellY}"]`
-    );
-
-    if (cell) {
-      cell.classList.add('ship-preview');
-    }
-  }
+  renderShipOnBoard(x, y, length, orientation, '', true);
 }
 
 function clearPreview() {
@@ -122,7 +110,7 @@ function placeShip(x, y, shipData) {
   clearPreview();
 }
 
-function renderShipOnBoard(x, y, length, orientation, shipName) {
+function renderShipOnBoard(x, y, length, orientation, shipName, isPreview = false) {
   for (let i = 0; i < length; i++) {
     const cellX = orientation === "horizontal" ? x : x + i;
     const cellY = orientation === "horizontal" ? y + i : y;
@@ -132,8 +120,12 @@ function renderShipOnBoard(x, y, length, orientation, shipName) {
     );
 
     if (cell) {
-      cell.classList.add("userShip");
-      cell.classList.add(`${shipName.toLowerCase()}-ship`);
+      if (isPreview) {
+        cell.classList.add('ship-preview');
+      } else {
+        cell.classList.add("userShip");
+        cell.classList.add(`${shipName.toLowerCase()}-ship`);
+      }
     }
   }
 }
