@@ -14,12 +14,15 @@ const {
 const GameSetup = require("./gameSetup-04/gameSetup.js");
 const GameFlow = require("./gameFlow.js");
 
+import shipPlacement from "./shipPlacement.js";
 import "./styles.css";
 
 const startBtn = document.querySelector(".startBtn");
 const userBoard = document.querySelector(".userBoard");
 const computerBoard = document.querySelector(".computerBoard");
+const gameSetup = new GameSetup();
 
+shipPlacement(gameSetup);
 document.addEventListener("DOMContentLoaded", () => {
   for (let i = 0; i < 100; i++) {
     const userCell = document.createElement("div");
@@ -35,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 startBtn.addEventListener("click", () => {
-  const gameSetup = new GameSetup();
   gameSetup.startGame();
 
   const gameFlow = new GameFlow(gameSetup);

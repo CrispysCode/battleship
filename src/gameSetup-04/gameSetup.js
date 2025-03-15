@@ -29,7 +29,6 @@ class GameSetup {
     //   { ship: new Submarine(), x: 7, y: 7, position: "horizontal" },
     //   { ship: new Destroyer(), x: 9, y: 0, position: "horizontal" },
     // ];
-
     // ships.forEach((shipSpot, index) => {
     //   console.log(`Attempting to place ship ${index + 1}:`, {
     //     ship: shipSpot.ship.constructor.name,
@@ -37,9 +36,7 @@ class GameSetup {
     //     y: shipSpot.y,
     //     position: shipSpot.position,
     //   });
-
     //   try {
-  
     //     this.userGameboard.placeShip(
     //       shipSpot.ship,
     //       shipSpot.x,

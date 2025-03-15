@@ -34,7 +34,7 @@ class GameFlow {
     this.renderBoards();
 
     if (this.gameSetup.computerGameboard.allShipsSunk()) {
-      console.log("User wins!");
+      alert("User wins!");
       return;
     }
 
@@ -53,7 +53,7 @@ class GameFlow {
     this.renderBoards();
 
     if (this.gameSetup.userGameboard.allShipsSunk()) {
-      console.log("Computer wins!");
+      alert("Computer wins!");
       return;
     }
 
