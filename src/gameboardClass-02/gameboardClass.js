@@ -1,3 +1,4 @@
+const output = document.querySelector(".status");
 class Gameboard {
   constructor() {
     this.board = Array(10)
@@ -20,6 +21,7 @@ class Gameboard {
       }
       for (let i = 0; i < ship.length; i++) {
         this.board[x][y + i] = ship;
+       
       }
     } else {
       for (let i = 0; i < ship.length; i++) {
@@ -35,14 +37,20 @@ class Gameboard {
       }
     }
     this.ships.push(ship);
+    output.textContent = ship.constructor.name + " " + "placed";
+    if (this.ships.length === 5) {
+      output.textContent = "PRESS START"
+    }
   }
 
   receiveAttack(x, y) {
     if (this.board[x][y] !== null) {
       this.board[x][y].hit();
       this.hitLocations.add(`${x},${y}`);
+      output.textContent = "HIT";
     } else {
       this.missedAttacks.push([x, y]);
+      output.textContent = "MISS"
     }
   }
 

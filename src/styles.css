@@ -75,6 +75,14 @@ footer p {
   min-height: 50px;
   min-width: 185px;
   margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  font-weight: bold;
+  font-style: italic;
 }
 
 .textarea {
