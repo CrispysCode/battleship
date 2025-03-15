@@ -39,7 +39,9 @@ class GameFlow {
     }
 
     this.currentPlayer = "computer";
-    this.computerTurn();
+    setTimeout(() => {
+      this.computerTurn();
+    }, 1000);
   }
 
   computerTurn() {

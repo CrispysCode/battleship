@@ -23,7 +23,7 @@ class Gameboard {
       }
     } else {
       for (let i = 0; i < ship.length; i++) {
-        if (x + i < 0 || x + i >= 10 || y < 0 || y + i >= 10) {
+        if (x + i < 0 || x + i >= 10 || y < 0 || y >= 10) {
           throw new Error("Ship placement invalid");
         }
         if (this.board[x + i][y] !== null) {

@@ -24,7 +24,7 @@
             data-length="5"
             data-name="Carrier"
           >
-            Carrier (5)
+            Carrier
           </div>
           <div
             class="ship"
@@ -32,7 +32,7 @@
             data-length="4"
             data-name="Battleship"
           >
-            Battleship (4)
+            Battleship
           </div>
           <div
             class="ship"
@@ -40,7 +40,7 @@
             data-length="3"
             data-name="Cruiser"
           >
-            Cruiser (3)
+            Cruiser
           </div>
           <div
             class="ship"
@@ -48,7 +48,7 @@
             data-length="3"
             data-name="Submarine"
           >
-            Submarine (3)
+            Submarine
           </div>
           <div
             class="ship"
@@ -56,23 +56,28 @@
             data-length="2"
             data-name="Destroyer"
           >
-            Destroyer (2)
+            Destroyer
           </div>
         </div>
         <div class="textarea">
-          <p><strong>Ship Orientation:</strong></p>
+          <div class="orientation">
+            <p><strong>Ship Orientation:</strong></p>
 
-          <p class="renderText">PRESS R</p>
+            <p class="renderText">PRESS R</p>
+          </div>
+          <div class="gameStatus">
+            <p class="status"></p>
+          </div>
         </div>
-        <button class="startBtn">Start Game</button>
+        <button class="startBtn">Start</button>
       </div>
       <div class="boardname">
-        <h2>Opponent's Board</h2>
+        <h2>Computer's Board</h2>
         <div class="computerBoard board"></div>
       </div>
     </div>
     <footer>
-      <p>Make sure to place your ships!</p>
+      <p>Place your ships, then press start!</p>
     </footer>
   </body>
 </html>

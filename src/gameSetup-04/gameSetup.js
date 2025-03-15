@@ -21,68 +21,41 @@ class GameSetup {
     this.computerPlayer = new createPlayer("computer", this.computerGameboard);
   }
 
-  placeUserShips() {
-    // const ships = [
-    //   { ship: new Carrier(), x: 0, y: 0, position: "horizontal" },
-    //   { ship: new Battleship(), x: 2, y: 2, position: "horizontal" },
-    //   { ship: new Cruiser(), x: 5, y: 5, position: "horizontal" },
-    //   { ship: new Submarine(), x: 7, y: 7, position: "horizontal" },
-    //   { ship: new Destroyer(), x: 9, y: 0, position: "horizontal" },
-    // ];
-    // ships.forEach((shipSpot, index) => {
-    //   console.log(`Attempting to place ship ${index + 1}:`, {
-    //     ship: shipSpot.ship.constructor.name,
-    //     x: shipSpot.x,
-    //     y: shipSpot.y,
-    //     position: shipSpot.position,
-    //   });
-    //   try {
-    //     this.userGameboard.placeShip(
-    //       shipSpot.ship,
-    //       shipSpot.x,
-    //       shipSpot.y,
-    //       shipSpot.position,
-    //     );
-    //   } catch (error) {
-    //     console.error(`Error placing ship ${index + 1}:`, error);
-    //     throw error;
-    //   }
-    // });
-  }
-
   placeComputerShips() {
     const ships = [
-      { ship: new Carrier(), x: 1, y: 1, position: "horizontal" },
-      { ship: new Battleship(), x: 3, y: 3, position: "horizontal" },
-      { ship: new Cruiser(), x: 6, y: 6, position: "horizontal" },
-      { ship: new Submarine(), x: 7, y: 7, position: "horizontal" },
-      { ship: new Destroyer(), x: 0, y: 8, position: "horizontal" },
+      new Carrier(),
+      new Battleship(),
+      new Cruiser(),
+      new Submarine(),
+      new Destroyer(),
     ];
 
-    ships.forEach((shipSpot, index) => {
-      console.log(`Attempting to place ship ${index + 1}:`, {
-        ship: shipSpot.ship.constructor.name,
-        x: shipSpot.x,
-        y: shipSpot.y,
-        position: shipSpot.position,
-      });
+    ships.forEach((ship, index) => {
+      let x, y, position;
+      let validPlacement = false;
 
-      try {
-        this.computerGameboard.placeShip(
-          shipSpot.ship,
-          shipSpot.x,
-          shipSpot.y,
-          shipSpot.position,
-        );
-      } catch (error) {
-        console.error(`Error placing ship ${index + 1}:`, error);
-        throw error;
+      while (!validPlacement) {
+        x = Math.floor(Math.random() * 10);
+        y = Math.floor(Math.random() * 10);
+        position = Math.random() < 0.5 ? "horizontal" : "vertical";
+
+        try {
+          this.computerGameboard.placeShip(ship, x, y, position);
+          validPlacement = true;
+        } catch (error) {
+          console.log(`Error placing ship ${index + 1}:`, error);
+        }
       }
+      console.log(`Placed ship ${index + 1}:`, {
+        ship: ship.constructor.name,
+        x: x,
+        y: y,
+        position: position,
+      });
     });
   }
 
   startGame() {
-    this.placeUserShips();
     this.placeComputerShips();
 
     console.log("Game started");

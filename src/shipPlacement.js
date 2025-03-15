@@ -66,7 +66,7 @@ const shipPlacement = (setup) => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "r") {
       orientation = orientation === "horizontal" ? "vertical" : "horizontal";
-      renderText.innerHTML = `${orientation}`;
+      renderText.innerHTML = `${orientation}`.toUpperCase();
 
       if (currentShip) {
         currentShip.orientation = orientation;
