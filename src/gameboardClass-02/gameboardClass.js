@@ -36,21 +36,21 @@ class Gameboard {
         this.board[x + i][y] = ship;
       }
     }
-    this.ships.push(ship);
     output.textContent = ship.constructor.name + " " + "placed";
-    if (this.ships.length === 5) {
-      output.textContent = "PRESS START"
-    }
+    this.ships.push(ship);
+    setTimeout(() => {
+      if (this.ships.length === 5) {
+        output.textContent = "";
+      }
+    }, 500)
   }
 
   receiveAttack(x, y) {
     if (this.board[x][y] !== null) {
       this.board[x][y].hit();
       this.hitLocations.add(`${x},${y}`);
-      output.textContent = "HIT";
     } else {
       this.missedAttacks.push([x, y]);
-      output.textContent = "MISS"
     }
   }
 

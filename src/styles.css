@@ -38,6 +38,9 @@ header > h1 {
   background-color: black;
   pointer-events: none;
 }
+.cell.hit {
+  background-color: black;
+}
 
 .cell.computerShip.hit {
   background-color: blue;
