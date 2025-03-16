@@ -1,6 +1,7 @@
 const GameSetup = require("./gameSetup-04/gameSetup");
 const RenderGame = require("./shipPlacement");
 const Gameboard = require("./gameboardClass-02/gameboardClass");
+const output = document.querySelector(".status");
 
 class GameFlow {
   constructor(gameSetup) {
@@ -26,15 +27,15 @@ class GameFlow {
     const y = parseInt(event.target.dataset.y);
 
     if (isNaN(x) || isNaN(y)) {
-      alert("Choose a different spot!");
+      output.textContent = "Try again!"
       return;
     }
 
-    this.gameSetup.computerGameboard.receiveAttack(x, y);
+    this.gameSetup.computerGameboard.receiveAttack(x, y, "user");
     this.renderBoards();
 
     if (this.gameSetup.computerGameboard.allShipsSunk()) {
-      alert("User wins!");
+      output.textContent = "USER WINS"
       return;
     }
 
@@ -51,7 +52,7 @@ class GameFlow {
       y = Math.floor(Math.random() * 10);
     } while (this.isIllegalMove(x, y));
 
-    this.gameSetup.userGameboard.receiveAttack(x, y);
+    this.gameSetup.userGameboard.receiveAttack(x, y, "computer");
     this.renderBoards();
 
     if (this.gameSetup.userGameboard.allShipsSunk()) {

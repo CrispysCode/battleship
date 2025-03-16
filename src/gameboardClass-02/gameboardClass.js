@@ -40,14 +40,14 @@ class Gameboard {
     this.ships.push(ship);
   }
 
-  receiveAttack(x, y) {
+  receiveAttack(x, y, player) {
     if (this.board[x][y] !== null) {
       this.board[x][y].hit();
       this.hitLocations.add(`${x},${y}`);
-      output.textContent = `${playerType.toUpperCase()} HIT`;
+      output.textContent = `${player.toUpperCase()} HIT`;
     } else {
       this.missedAttacks.push([x, y]);
-      output.textContent = `${playerType.toUpperCase()} HIT`;
+      output.textContent = `${player.toUpperCase()} MISS`;
     }
   }
 

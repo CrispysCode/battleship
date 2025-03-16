@@ -1,3 +1,4 @@
+const output = document.querySelector(".status");
 class Ship {
   constructor(length) {
     this.length = length;

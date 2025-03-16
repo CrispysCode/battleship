@@ -39,6 +39,12 @@ const shipPlacement = (setup) => {
     const x = parseInt(e.target.dataset.x);
     const y = parseInt(e.target.dataset.y);
 
+    const target = e.target;
+
+    if (!target.dataset.x || !target.dataset.y) {
+      console.error('error', target);
+      return;
+    }
     renderShipOnBoard(
       x,
       y,
