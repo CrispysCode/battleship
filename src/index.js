@@ -21,6 +21,7 @@ const startBtn = document.querySelector(".startBtn");
 const userBoard = document.querySelector(".userBoard");
 const computerBoard = document.querySelector(".computerBoard");
 const gameSetup = new GameSetup();
+const gameStatus = document.querySelector(".status");
 
 shipPlacement(gameSetup);
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 startBtn.addEventListener("click", () => {
   gameSetup.startGame();
-
+  gameStatus.textContent = "You Start!";
   const gameFlow = new GameFlow(gameSetup);
   gameFlow.renderBoards();
 });

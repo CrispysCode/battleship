@@ -12,6 +12,7 @@ let orientation = "horizontal";
 const renderText = document.querySelector(".renderText");
 const shipContainer = document.querySelector(".ships-container");
 const userBoard = document.querySelector(".userBoard");
+const output = document.querySelector(".status");
 
 const shipPlacement = (setup) => {
   gameSetup = setup;
@@ -108,6 +109,11 @@ function placeShip(x, y, shipData) {
   // Render ship
   renderShipOnBoard(x, y, ship.length, shipData.orientation, shipData.name);
 
+  const remainingShips = document.querySelectorAll(".ships-container .ship");
+
+  if (remainingShips.length === 0) {
+    output.textContent = "PRESS START";
+  }
   // Clear current ship and preview
   currentShip = null;
   clearPreview();
